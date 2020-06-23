@@ -19,7 +19,14 @@ public class PanelNotas extends javax.swing.JPanel {
     public PanelNotas(Principal principal) {
         this.principal= principal;
         initComponents();
+        jTextFieldCodigoAlumnoCarga.setVisible(false);
+        jTextFieldIDDeLaNotaACargar.setVisible(false);
         jTextFieldAsignatura.setEditable(false);
+        jTextFieldCodigoCurso.setVisible(false);
+        jTextFieldCodigoAlumno.setVisible(false);
+        jTextFieldCodigoAsignatura.setVisible(false);
+        jTextFieldCodigoAsigCargar.setVisible(false);
+        jTextFieldAsignatura.setVisible(false);
         botones();
         cargarGrados();
         cargarCursos();
@@ -43,9 +50,10 @@ public class PanelNotas extends javax.swing.JPanel {
         jButtonVolver = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jTextFieldCodigoCurso = new javax.swing.JTextField();
-        jTextFieldCodigoAlumno = new javax.swing.JTextField();
-        jTextFieldCodigoAsignatura = new javax.swing.JTextField();
+        jComboBoxEstudiante = new javax.swing.JComboBox<>();
+        jComboBoxCurso = new javax.swing.JComboBox<>();
+        jComboBoxAsignatura = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
         jTextFieldCodigoAlumnoCarga = new javax.swing.JTextField();
         jTextFieldIDDeLaNotaACargar = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -53,14 +61,13 @@ public class PanelNotas extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jButtonCargarNotas = new javax.swing.JButton();
         jButtonModificarNota = new javax.swing.JButton();
-        jTextFieldAsignatura = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jTextFieldCodigoAsigCargar = new javax.swing.JTextField();
-        jComboBoxEstudiante = new javax.swing.JComboBox<>();
-        jComboBoxCurso = new javax.swing.JComboBox<>();
-        jComboBoxAsignatura = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
+        jTextFieldAsignatura = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextFieldCodigoCurso = new javax.swing.JTextField();
+        jTextFieldCodigoAlumno = new javax.swing.JTextField();
+        jTextFieldCodigoAsignatura = new javax.swing.JTextField();
         jComboBoxGrado = new javax.swing.JComboBox<>();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,12 +77,12 @@ public class PanelNotas extends javax.swing.JPanel {
         add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("codigo del curso:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, 20));
+        jLabel1.setText("Curso:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("codigo del alumno:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
+        jLabel2.setText("Alumno:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Nombre de la nota:");
@@ -85,16 +92,16 @@ public class PanelNotas extends javax.swing.JPanel {
         jTextFieldNombreNota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTextFieldNombreNota.setForeground(new java.awt.Color(255, 255, 255));
         jTextFieldNombreNota.setToolTipText("");
-        add(jTextFieldNombreNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 118, -1));
+        add(jTextFieldNombreNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 230, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Nota:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, -1, -1));
 
         jTextFieldNota.setBackground(new java.awt.Color(0, 0, 0));
         jTextFieldNota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTextFieldNota.setForeground(new java.awt.Color(255, 255, 255));
-        add(jTextFieldNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 118, -1));
+        add(jTextFieldNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 220, 20));
 
         jButton2Limpiar.setBackground(new java.awt.Color(102, 102, 102));
         jButton2Limpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -127,23 +134,42 @@ public class PanelNotas extends javax.swing.JPanel {
         add(jButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 109, 47));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("codigo de la asignatura:");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
+        jLabel9.setText("Asignatura:");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
 
-        jTextFieldCodigoCurso.setBackground(new java.awt.Color(0, 0, 0));
-        jTextFieldCodigoCurso.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTextFieldCodigoCurso.setForeground(new java.awt.Color(255, 255, 255));
-        add(jTextFieldCodigoCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 118, -1));
+        jComboBoxEstudiante.setBackground(new java.awt.Color(51, 51, 51));
+        jComboBoxEstudiante.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBoxEstudiante.setToolTipText("");
+        jComboBoxEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEstudianteActionPerformed(evt);
+            }
+        });
+        add(jComboBoxEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 250, -1));
 
-        jTextFieldCodigoAlumno.setBackground(new java.awt.Color(0, 0, 0));
-        jTextFieldCodigoAlumno.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTextFieldCodigoAlumno.setForeground(new java.awt.Color(255, 255, 255));
-        add(jTextFieldCodigoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 118, -1));
+        jComboBoxCurso.setBackground(new java.awt.Color(51, 51, 51));
+        jComboBoxCurso.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBoxCurso.setToolTipText("");
+        jComboBoxCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCursoActionPerformed(evt);
+            }
+        });
+        add(jComboBoxCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 250, -1));
 
-        jTextFieldCodigoAsignatura.setBackground(new java.awt.Color(0, 0, 0));
-        jTextFieldCodigoAsignatura.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTextFieldCodigoAsignatura.setForeground(new java.awt.Color(255, 255, 255));
-        add(jTextFieldCodigoAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 118, -1));
+        jComboBoxAsignatura.setBackground(new java.awt.Color(51, 51, 51));
+        jComboBoxAsignatura.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBoxAsignatura.setToolTipText("");
+        jComboBoxAsignatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxAsignaturaActionPerformed(evt);
+            }
+        });
+        add(jComboBoxAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 250, -1));
+
+        jLabel8.setBackground(new java.awt.Color(204, 255, 102));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Fondos-blackberry-wallpapers.jpg"))); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 470));
 
         jTextFieldCodigoAlumnoCarga.setBackground(new java.awt.Color(0, 0, 0));
         jTextFieldCodigoAlumnoCarga.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -187,6 +213,15 @@ public class PanelNotas extends javax.swing.JPanel {
         });
         add(jButtonModificarNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 290, 140, 46));
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setText("Codigo de la asignatura:");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, -1, 30));
+
+        jTextFieldCodigoAsigCargar.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldCodigoAsigCargar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextFieldCodigoAsigCargar.setForeground(new java.awt.Color(255, 255, 255));
+        add(jTextFieldCodigoAsigCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, 96, -1));
+
         jTextFieldAsignatura.setBackground(new java.awt.Color(0, 0, 0));
         jTextFieldAsignatura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextFieldAsignatura.setForeground(new java.awt.Color(255, 255, 255));
@@ -197,48 +232,20 @@ public class PanelNotas extends javax.swing.JPanel {
         jLabel10.setText("Asignatura:");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setText("Codigo de la asignatura:");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, -1, 30));
+        jTextFieldCodigoCurso.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldCodigoCurso.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextFieldCodigoCurso.setForeground(new java.awt.Color(255, 255, 255));
+        add(jTextFieldCodigoCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 118, -1));
 
-        jTextFieldCodigoAsigCargar.setBackground(new java.awt.Color(0, 0, 0));
-        jTextFieldCodigoAsigCargar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTextFieldCodigoAsigCargar.setForeground(new java.awt.Color(255, 255, 255));
-        add(jTextFieldCodigoAsigCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, 96, -1));
+        jTextFieldCodigoAlumno.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldCodigoAlumno.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextFieldCodigoAlumno.setForeground(new java.awt.Color(255, 255, 255));
+        add(jTextFieldCodigoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 118, -1));
 
-        jComboBoxEstudiante.setBackground(new java.awt.Color(51, 51, 51));
-        jComboBoxEstudiante.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBoxEstudiante.setToolTipText("");
-        jComboBoxEstudiante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxEstudianteActionPerformed(evt);
-            }
-        });
-        add(jComboBoxEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, -1, -1));
-
-        jComboBoxCurso.setBackground(new java.awt.Color(51, 51, 51));
-        jComboBoxCurso.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBoxCurso.setToolTipText("");
-        jComboBoxCurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxCursoActionPerformed(evt);
-            }
-        });
-        add(jComboBoxCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
-
-        jComboBoxAsignatura.setBackground(new java.awt.Color(51, 51, 51));
-        jComboBoxAsignatura.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBoxAsignatura.setToolTipText("");
-        jComboBoxAsignatura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxAsignaturaActionPerformed(evt);
-            }
-        });
-        add(jComboBoxAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, -1));
-
-        jLabel8.setBackground(new java.awt.Color(204, 255, 102));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Fondos-blackberry-wallpapers.jpg"))); // NOI18N
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 470));
+        jTextFieldCodigoAsignatura.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldCodigoAsignatura.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextFieldCodigoAsignatura.setForeground(new java.awt.Color(255, 255, 255));
+        add(jTextFieldCodigoAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 118, -1));
 
         jComboBoxGrado.setBackground(new java.awt.Color(51, 51, 51));
         jComboBoxGrado.setForeground(new java.awt.Color(255, 255, 255));
@@ -431,7 +438,7 @@ public class PanelNotas extends javax.swing.JPanel {
         ArrayList <Estudiante> estudiantes = principal.cargarEstudiantes();
         if(estudiantes!=null){
         for (int i = 0; i < estudiantes.size(); i++) {
-            jComboBoxEstudiante.addItem(estudiantes.get(i).getIdentificacion()+"-"+estudiantes.get(i).getNombre());
+            jComboBoxEstudiante.addItem(estudiantes.get(i).getCodigoCarnet()+"-"+estudiantes.get(i).getNombre());
         }
         }
     }
