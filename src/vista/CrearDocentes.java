@@ -498,8 +498,8 @@ public class CrearDocentes extends javax.swing.JPanel{
             String rh = jTextFieldRHDocente.getText();
             int curso = jComboBoxSeleccionCurso.getSelectedIndex() - 1;
             int asignatura = jComboBoxSeleccionAsignatura.getSelectedIndex()-1;
-            //!principal.existeDocente(documento,codigoCarnet)
-            if (false) {
+            
+            if (principal.existeDocente(documento,codigoCarnet)) {
                 boolean creado = principal.crearDocente(documento,codigoCarnet,edad,telefono,nombre,apellido,rh,curso,asignatura);
                 if (creado){
                     limpiar();

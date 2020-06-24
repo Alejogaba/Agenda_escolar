@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import vista.PanelNotas;
 
 
 public class CrearGradoPanel extends javax.swing.JPanel {

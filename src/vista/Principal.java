@@ -374,6 +374,10 @@ JFrame.setDefaultLookAndFeelDecorated(true);
     protected boolean crearGrado(int id, String nombre) {
         return  gestionGrado.crearGrado(id,nombre);
     }
+    
+    public void refreshAsignatura(){
+        gestionAsignatura.refresh();
+    }
 
     protected String[] gradoPorID(int i) {
         return gestionGrado.gradosIDToStringArray(i);

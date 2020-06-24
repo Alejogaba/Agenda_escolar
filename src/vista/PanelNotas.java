@@ -34,6 +34,9 @@ public class PanelNotas extends javax.swing.JPanel {
         cargarEstudiantes();
     }
 
+    PanelNotas() {
+          }
+
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -407,16 +410,18 @@ public class PanelNotas extends javax.swing.JPanel {
         
     }
     
-    protected void cargarCursos() {
+   public void cargarCursos() {
         jComboBoxCurso.setModel(new DefaultComboBoxModel<>(new String[]{"Seleccione un curso"}));
         String[] items = new String[principal.cantidadDeGrados() + 1];
         items[0] = "Seleccione un curso: ";
-        ArrayList <Curso> cursos = principal.cargarCursos();
-        if(cursos!=null){
+        ArrayList <Curso> cursos = new ArrayList<>();
+        cursos = principal.cargarCursos();
         for (int i = 0; i < cursos.size(); i++) {
             jComboBoxCurso.addItem(cursos.get(i).getId()+"-"+cursos.get(i).getNombre());
         }
-        }
+        
+        jComboBoxCurso.revalidate();
+        jComboBoxCurso.repaint();
     }
     
     protected void cargarAsignaturas() {

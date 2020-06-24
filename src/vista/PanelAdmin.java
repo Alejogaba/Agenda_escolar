@@ -1,11 +1,20 @@
 
 package vista;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Asignatura;
 import modelo.Curso;
 import modelo.Docente;
 import modelo.Estudiante;
 import modelo.Grado;
+import vista.Principal;
+import vista.PanelNotas;
+import vista.PanelActivarNotas;
+
 
 
 public class PanelAdmin extends javax.swing.JPanel {
@@ -29,6 +38,7 @@ public class PanelAdmin extends javax.swing.JPanel {
      * metodo para ir al panel de iniciar sesion
      */
     protected void irAPanelSesion(){
+        this.restart();
         principal.irAPanelSesion();
     }
     
@@ -213,6 +223,26 @@ public class PanelAdmin extends javax.swing.JPanel {
        irActivarNotas();
     }//GEN-LAST:event_jButtonHabilitarFechasActionPerformed
 
+    public void restart(){try {
+        Principal principal = new Principal();
+        PanelNotas notas = new PanelNotas();
+        principal.invalidate();
+        principal.validate();
+        principal.repaint();
+        principal.main(null);
+        notas.invalidate();
+        notas.validate();
+        notas.repaint();
+        } catch (IOException ex) {
+            Logger.getLogger(PanelAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PanelAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+    
+  
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCambiarNotas;

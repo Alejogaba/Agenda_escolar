@@ -42,7 +42,9 @@ public class GestionCurso {
         return cursosToString;
     }
     public ArrayList <Curso> cargar_cursos(){
-        return cursos;
+       cursos = new ArrayList<>();
+       cargarDatos();
+       return cursos;
     }
 
     public int cantidadDeCursos() {

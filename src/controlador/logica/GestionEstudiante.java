@@ -55,6 +55,8 @@ public class GestionEstudiante {
     }
     
     public ArrayList <Estudiante> cargar_estudiantes(){
+        estudiantes = new ArrayList<>();
+        cargarDatos();
         return estudiantes;
     }
 

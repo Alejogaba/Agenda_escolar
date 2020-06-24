@@ -93,8 +93,7 @@ public class PanelDocente extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void notas() {
-        //principal.activarNota()
-        if(true){
+        if(principal.activarNota()){
             principal.irAPanelNota();
         }else{
             JOptionPane.showMessageDialog(this,"sistema cerrado","acttivacion notas",JOptionPane.INFORMATION_MESSAGE);

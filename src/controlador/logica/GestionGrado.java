@@ -46,6 +46,8 @@ public class GestionGrado {
     }
     
     public ArrayList <Grado> cargar_grados(){
+    this.grados = new ArrayList<Grado>();
+    cargarDatos();
     return grados;
     }
 

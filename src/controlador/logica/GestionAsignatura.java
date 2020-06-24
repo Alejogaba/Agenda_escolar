@@ -42,6 +42,12 @@ public class GestionAsignatura {
     public ArrayList <Asignatura> cargar_asignatura(){
         return asignaturas;
     }
+    
+    public void refresh(){
+     this.asignaturas = new ArrayList <Asignatura>();
+     defecto();
+     cargarDatos();
+    }
 
     public String[] asignaturasToStringArray() {
         String asignaturasToString[] = new String[cantidadDeAsignaturas()];

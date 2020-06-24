@@ -35,10 +35,10 @@ public class GestionDocente {
     public boolean existeDocente(long documento,int codigoCarnet) {
          for (int i = 0; i < docentes.size(); i++) {
             if (docentes.get(i).getIdentificacion()== documento || docentes.get(i).getCodigoCarnet()== codigoCarnet) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
 
     }
 

@@ -2,25 +2,47 @@
 package vista;
 
 import controlador.persistencia.ArchivoAdmin;
+import controlador.persistencia.ArchivoAsignatura;
 import controlador.persistencia.ArchivoHabilitarFechas;
 import controlador.persistencia.ArchivoNota;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.Asignatura;
 
 
 public class PanelActivarNotas extends javax.swing.JPanel {
-    private boolean activar;
+    public boolean activar;
     Principal principal;
     Calendar calendario;
     ArchivoAdmin aa;
+String directory = System.getProperty("user.dir");
+String fileName = "temp.txt";
+String absolutePath = directory + File.separator + fileName;
     
     public PanelActivarNotas(Principal principal) {
         this.principal=principal;
+        this.informacionActivacion();
         calendario= new GregorianCalendar();
         aa = new ArchivoAdmin();
         initComponents();
         activarBotones();
+    }
+
+    PanelActivarNotas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    
@@ -129,6 +151,7 @@ public class PanelActivarNotas extends javax.swing.JPanel {
 
     private void jButtonActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActivarActionPerformed
         Activar();
+        this.guardar_archivo();
     }//GEN-LAST:event_jButtonActivarActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
@@ -137,6 +160,7 @@ public class PanelActivarNotas extends javax.swing.JPanel {
 
     private void jButtonDesactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesactivarActionPerformed
        Desactivar();
+       this.guardar_archivo();
     }//GEN-LAST:event_jButtonDesactivarActionPerformed
 
 
@@ -335,8 +359,8 @@ public class PanelActivarNotas extends javax.swing.JPanel {
     }
     
     public boolean informacionActivacion(){
-        boolean activacion=activar;
-        return activacion;
+        activar=this.cargar_archivo();
+        return activar;
     }     
 
     private void Desactivar() {
@@ -345,6 +369,43 @@ public class PanelActivarNotas extends javax.swing.JPanel {
         activarBotones();
     }
 
+    
+      public void guardar_archivo(){
+
+
+// Write the content in file 
+try(FileWriter fileWriter = new FileWriter(absolutePath)) {
+    String fileContent = String.valueOf(activar);
+    fileWriter.write(fileContent);
+    fileWriter.close();
+} catch (IOException e) {
+    // Cxception handling
+}
+    }
+      
+      public boolean cargar_archivo(){
+try(FileInputStream fileInputStream = new FileInputStream(absolutePath)) {
+    int ch = fileInputStream.read();
+    String a = "";
+    while(ch != -1) {
+        a +=String.valueOf((char)ch);
+        ch = fileInputStream.read();
+    }
+    System.out.print(a);
+    System.out.print("TODO CORRECTO");
+    return Boolean.parseBoolean(a);
+} catch (FileNotFoundException e) {
+    // exception handling
+    System.out.print(e.toString());
+    return false;
+} catch (IOException e) {
+    System.out.print(e.toString());
+    return false;
+}
+    }
+      
+      
+      
     private void activarBotones() {
        jButtonActivar.setEnabled(!activar);
        jButtonDesactivar.setEnabled(activar);
